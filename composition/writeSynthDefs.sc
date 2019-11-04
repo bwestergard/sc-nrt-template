@@ -1,4 +1,3 @@
-(
 SynthDef(
     \nrtPing,
     {
@@ -13,5 +12,6 @@ SynthDef(
             )
         );
     }
-).writeDefFile("/home/bjorn/")
-)
+).writeDefFile("./build");
+
+0.exit;
