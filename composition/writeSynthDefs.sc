@@ -14,4 +14,10 @@ SynthDef(
     }
 ).writeDefFile("./build");
 
+Pbind(
+    \instrument, \nrtPing,
+    \dur, 0.25,
+    \degree, Pseq([0,2,4,6])
+).asScore(1.5).writeOSCFile("./build/score.osc");
+
 0.exit;
