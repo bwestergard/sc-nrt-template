@@ -47,15 +47,21 @@ const bundles = [
     },
     {
 	timeTag: {
-	    raw: [10, 0]
+	    raw: [1, 0]
 	},
 	packets: [noteMsg(1001, 440*2)]
     },
     {
 	timeTag: {
-	    raw: [20, 0]
+	    raw: [2, 0]
 	},
 	packets: [noteMsg(1002, 440*4)]
+    },
+    {
+	timeTag: {
+	    raw: [3, 0]
+	},
+	packets: [noteMsg(1002, 440*5)]
     }
 ];
 
