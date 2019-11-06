@@ -3,4 +3,5 @@
 mkdir -p build;
 rm build/*;
 sclang -d . composition/writeSynthDefs.sc;
-scsynth -N ./build/score.osc _ ./build/output.aiff 44100 AIFF int16
+node composition/generateScore.js
+scsynth -N ./build/javascriptScore.osc _ ./build/output.aiff 44100 AIFF int16
