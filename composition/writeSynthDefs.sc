@@ -1,7 +1,7 @@
 SynthDef(
     \nrtPing,
     {
-        arg freq;
+        arg freq = 440;
         Out.ar(
             0,
             SinOsc.ar(freq).dup * XLine.ar(
@@ -14,13 +14,18 @@ SynthDef(
     }
 ).writeDefFile("./build");
 
-Pbind(
-    \instrument, \nrtPing,
-    \dur, 0.25,
-    \degree, Pseq([0,2,4,6], inf),
-    \mtranspose, Pstep([1,4,0,0], 1, inf),
-    \root, Pstep([0,5,10,15], 4, inf),
-    \octave, Pstep([4,4,3,2]+1, 4, inf)
-).asScore(8).writeOSCFile("./build/score.osc");
+f = File("./build/score.osc", "w");
+
+c = [0, [\s_new, \nrtPing, 1001, 0, 0, \freq, 440]].asRawOSC;
+f.write(c.size); // each bundle is preceded by a 32 bit size.
+f.write(c); // write the bundle data.
+
+// scsynth stops processing immediately after the last command, so here is
+// a do-nothing command to mark the end of the command stream.
+c = [5, [0]].asRawOSC;
+f.write(c.size);
+f.write(c);
+
+f.close;
 
 0.exit;
