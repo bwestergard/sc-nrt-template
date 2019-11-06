@@ -38,32 +38,21 @@ const noteMsg = (id, freq) => ({
     ]
 });
 
-const bundles = [
-    {
-	timeTag: {
-	    raw: [0, 0]
-	},
-	packets: [noteMsg(1000, 440)]
-    },
-    {
-	timeTag: {
-	    raw: [1, 0]
-	},
-	packets: [noteMsg(1001, 440*2)]
-    },
-    {
-	timeTag: {
-	    raw: [2, 0]
-	},
-	packets: [noteMsg(1002, 440*4)]
-    },
-    {
-	timeTag: {
-	    raw: [3, 0]
-	},
-	packets: [noteMsg(1002, 440*5)]
-    }
-];
+const ratios = [1,1,2,3/2,3/4,6/5,1/2,1,1];
+
+const timetag = (s) => ({
+    raw: [
+	Math.floor(s),
+	(s - Math.floor(s)) * 4294967296
+    ]
+})
+
+const bundles = ratios.map(
+    (ratio, i) => ({
+	timeTag: timetag(i * 2),
+	packets: [noteMsg(1000 + i, 440 * ratio)]
+    })
+)
 
 const binaryBundles = bundles.map((bundle) => osc.writePacket(bundle));
 
