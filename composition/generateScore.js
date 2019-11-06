@@ -13,7 +13,7 @@ const noteMsg = (id, freq) => ({
     args: [
 	{
 	    type: "s",
-	    value: "nrtPing"
+	    value: 'nrtPing'
 	},
 	{
 	    type: "i",
@@ -29,7 +29,7 @@ const noteMsg = (id, freq) => ({
 	},
 	{
 	    type: "s",
-	    value: "\freq"
+	    value: "freq"
 	},
 	{
 	    type: "f",
@@ -47,13 +47,13 @@ const bundles = [
     },
     {
 	timeTag: {
-	    raw: [1, 0]
+	    raw: [10, 0]
 	},
 	packets: [noteMsg(1001, 440*2)]
     },
     {
 	timeTag: {
-	    raw: [2, 0]
+	    raw: [20, 0]
 	},
 	packets: [noteMsg(1002, 440*4)]
     }
